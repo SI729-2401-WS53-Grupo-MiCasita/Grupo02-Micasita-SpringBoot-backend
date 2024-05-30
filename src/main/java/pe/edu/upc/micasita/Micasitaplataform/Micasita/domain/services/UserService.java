@@ -1,9 +1,4 @@
 package pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.services;
-<<<<<<< HEAD
-
-=======
-import org.springframework.beans.factory.annotation.Autowired;
->>>>>>> d4edeca1fed28563b53cf9b8a9dcf65e15a4e0cb
 import org.springframework.stereotype.Service;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.aggregates.UserRepository;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.entities.User;
@@ -15,10 +10,6 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-<<<<<<< HEAD
-=======
-    @Autowired
->>>>>>> d4edeca1fed28563b53cf9b8a9dcf65e15a4e0cb
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
