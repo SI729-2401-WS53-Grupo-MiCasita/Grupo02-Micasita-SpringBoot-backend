@@ -2,6 +2,7 @@ package pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.entities;
 
 import lombok.*;
 import jakarta.persistence.*;
+import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.aggregates.Buy;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.Amount;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.DateTime;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.Status;
@@ -11,7 +12,7 @@ import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Buy {
+public class BuyImpl implements Buy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -22,7 +23,7 @@ public class Buy {
 
     @ManyToOne
     @JoinColumn(name = "property_id", nullable = false)
-    private Properties property;
+    private PropertiesImpl property;
 
     @Embedded
     @AttributeOverride(name = "value", column = @Column(name = "date_time", nullable = false))
