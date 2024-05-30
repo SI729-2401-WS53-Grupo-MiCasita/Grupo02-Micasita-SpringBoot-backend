@@ -2,6 +2,7 @@ package pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.entities;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.aggregates.Properties;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.Price;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.Status;
 
@@ -11,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "properties")
 @Data
-public class Properties {
+public class PropertiesImpl implements Properties {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -47,9 +48,16 @@ public class Properties {
 
     private Integer yearBuilt;
 
-    //@ManyToOne
-    //@JoinColumn(name = "seller_id")
-    //private User seller;
     @OneToMany(mappedBy = "property", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PropertyImages> images;
+
+    @Override
+    public List<PropertyImages> getImages() {
+        return images;
+    }
+
+    @Override
+    public void setImages(List<PropertyImages> images) {
+        this.images = images;
+    }
 }

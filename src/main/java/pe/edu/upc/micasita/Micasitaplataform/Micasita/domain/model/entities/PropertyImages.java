@@ -6,7 +6,7 @@ import lombok.Data;
 @Entity
 @Table(name = "property_images")
 @Data
-class PropertyImages {
+public class PropertyImages {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -15,7 +15,7 @@ class PropertyImages {
 
     @ManyToOne
     @JoinColumn(name = "property_id")
-    private Properties property;
+    private PropertiesImpl property;
 
 
 }
