@@ -2,12 +2,9 @@ package pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate;
 
 import jakarta.persistence.*;
 
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.aggregates.PropertyImages;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.valueobjects.SellerID;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Properties {
     @Id
