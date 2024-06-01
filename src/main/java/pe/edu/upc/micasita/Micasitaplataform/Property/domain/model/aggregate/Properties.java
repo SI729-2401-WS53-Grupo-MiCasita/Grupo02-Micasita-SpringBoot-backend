@@ -3,9 +3,9 @@ package pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate;
 import jakarta.persistence.*;
 
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.valueobjects.SellerID;
-
 import java.math.BigDecimal;
 
+@Entity
 public class Properties {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

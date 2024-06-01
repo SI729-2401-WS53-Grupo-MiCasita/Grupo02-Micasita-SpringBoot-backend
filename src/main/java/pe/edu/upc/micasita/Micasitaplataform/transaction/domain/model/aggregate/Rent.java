@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.valueobjects.UserID;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Rent {
     @Id
@@ -17,5 +18,7 @@ public class Rent {
 
     private String status;
 
+    @OneToMany(mappedBy = "rent")
+    private List<TransactionEvents> transactionEvents;
 
 }
