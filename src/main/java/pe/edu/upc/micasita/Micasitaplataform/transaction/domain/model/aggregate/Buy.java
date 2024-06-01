@@ -2,13 +2,14 @@ package pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.aggregate
 
 
 import jakarta.persistence.*;
+import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Properties;
 import pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.valueobjects.PropertyID;
 import pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.valueobjects.UserID;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
+@Entity
 public class Buy {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,17 +18,14 @@ public class Buy {
     @Embedded
     private UserID userID;
 
-    @Embedded
-    private PropertyID propertyID;
-
     private LocalDateTime dateTime;
 
     private BigDecimal amount;
 
     private String status;
 
-    private Long usersId;
+    @ManyToOne
+    @JoinColumn(name = "property_id", nullable = false)
+    private Properties properties;
 
-    @OneToMany(mappedBy = "buy")
-    private List<TransactionEvents> transactionEvents;
 }
