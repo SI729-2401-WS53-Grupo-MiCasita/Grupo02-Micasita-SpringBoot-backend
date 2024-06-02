@@ -1,15 +1,13 @@
 package pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.aggregate;
 
-import jakarta.persistence.Embedded;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.DateTime;
+import jakarta.persistence.*;
+import pe.edu.upc.micasita.Micasitaplataform.controllers.domain.model.entities.Controllers;
 import pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.valueobjects.*;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
+@Entity
 public class TransactionEvents {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +18,7 @@ public class TransactionEvents {
     @Embedded
     private EventID eventID;
 
-    private DateTime EventDate;
+    private LocalDateTime EventDate;
 
     @Embedded
     private BuyID buyID;

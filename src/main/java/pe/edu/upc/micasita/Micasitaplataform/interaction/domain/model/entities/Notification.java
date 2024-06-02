@@ -1,6 +1,7 @@
-package pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.entities;
+package pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.entities;
 import lombok.*;
 import jakarta.persistence.*;
+import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.entities.User;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.NotificationMessage;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.NotificationStatus;
 
