@@ -6,6 +6,8 @@ import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.DNI;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.Email;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.Phone;
+import pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.entities.Notification;
+import pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.entities.PaymentMethod;
 
 import java.util.List;
 
