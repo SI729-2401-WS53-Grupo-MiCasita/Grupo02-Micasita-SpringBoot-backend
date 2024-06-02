@@ -1,7 +1,11 @@
 package pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.aggregate;
 
 import jakarta.persistence.*;
+
 import pe.edu.upc.micasita.Micasitaplataform.controllers.domain.model.entities.Controllers;
+
+import pe.edu.upc.micasita.Micasitaplataform.communication.domain.model.aggregate.Events;
+
 import pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.valueobjects.*;
 
 import java.time.LocalDateTime;
@@ -15,14 +19,20 @@ public class TransactionEvents {
     @Embedded
     private TransactionID transactionID;
 
-    @Embedded
-    private EventID eventID;
-
     private LocalDateTime EventDate;
 
-    @Embedded
-    private BuyID buyID;
-    @Embedded
-    private RentID rentID;
+
+    @ManyToOne
+    @JoinColumn(name = "buy_id")
+    private Buy buy;
+
+
+    @ManyToOne
+    @JoinColumn(name = "rent_id")
+    private Rent rent;
+
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    private Events events;
 
 }
