@@ -1,15 +1,12 @@
 package pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.aggregate;
 
 import jakarta.persistence.*;
-
-import pe.edu.upc.micasita.Micasitaplataform.controllers.domain.model.entities.Controllers;
-
 import pe.edu.upc.micasita.Micasitaplataform.communication.domain.model.aggregate.Events;
 
 import pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.valueobjects.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
+
 
 @Entity
 public class TransactionEvents {
