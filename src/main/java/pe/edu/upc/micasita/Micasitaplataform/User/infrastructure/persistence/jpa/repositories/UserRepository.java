@@ -1,4 +1,4 @@
-package pe.edu.upc.micasita.Micasitaplataform.User.domain.model.aggregates;
+package pe.edu.upc.micasita.Micasitaplataform.User.infrastructure.persistence.jpa.repositories;
 
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
