@@ -1,2 +1,4 @@
-package pe.edu.upc.micasita.Micasitaplataform.User.domain.model.queries;public record GetAllCoursesQuery() {
+package pe.edu.upc.micasita.Micasitaplataform.User.domain.model.queries;
+
+public record GetAllCoursesQuery(Integer id) {
 }
