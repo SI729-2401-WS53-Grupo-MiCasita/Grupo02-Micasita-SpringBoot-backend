@@ -1,11 +1,11 @@
-package pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.entities;
+package pe.edu.upc.micasita.Micasitaplataform.User.domain.model.entities;
 
 import lombok.*;
 import jakarta.persistence.*;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.Address;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.DNI;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.Email;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.Phone;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.Address;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.DNI;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.Email;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.Phone;
 import pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.entities.Notification;
 import pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.entities.PaymentMethod;
 

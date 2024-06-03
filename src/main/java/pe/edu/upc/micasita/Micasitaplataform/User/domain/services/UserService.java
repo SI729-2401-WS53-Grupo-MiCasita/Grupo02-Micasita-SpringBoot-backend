@@ -1,8 +1,8 @@
-package pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.services;
+package pe.edu.upc.micasita.Micasitaplataform.User.domain.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.aggregates.UserRepository;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.entities.User;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.aggregates.UserRepository;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.entities.User;
 
 import java.util.List;
 

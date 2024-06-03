@@ -1,9 +1,9 @@
 package pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.entities;
 import lombok.*;
 import jakarta.persistence.*;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.entities.User;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.NotificationMessage;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.NotificationStatus;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.entities.User;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.NotificationMessage;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.NotificationStatus;
 
 import java.time.LocalDateTime;
 

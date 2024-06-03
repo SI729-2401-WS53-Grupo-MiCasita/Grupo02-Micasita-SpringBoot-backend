@@ -1,0 +1,6 @@
+package pe.edu.upc.micasita.Micasitaplataform.User.domain.model.queries;
+
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.entities.User;
+
+public record CreateUserQuery(User user) {
+}

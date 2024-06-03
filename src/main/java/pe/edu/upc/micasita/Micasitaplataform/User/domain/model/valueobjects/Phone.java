@@ -1,4 +1,4 @@
-package pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects;
+package pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects;
 
 
 public record Phone(String value) {
