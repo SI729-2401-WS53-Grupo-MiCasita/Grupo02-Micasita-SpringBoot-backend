@@ -3,12 +3,12 @@ package pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.valueobje
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public record UserID(Long userId) {
+public record UserID(Long userID) {
     public UserID() {
         this(0L);
     }
     public UserID{
-        if(userId < 0){
+        if(userID < 0){
             throw new IllegalArgumentException("Profile userId cannot be negative");
         }
     }
