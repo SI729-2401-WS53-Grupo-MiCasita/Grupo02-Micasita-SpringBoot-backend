@@ -1,9 +1,12 @@
 package pe.edu.upc.micasita.Micasitaplataform.User.application.internal;
-
+/*
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.entities.User;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.queries.GetAllUsersQuery;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.queries.GetUserByIdQuery;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.services.UserQueryService;
 
 import java.util.List;
 
@@ -11,11 +14,12 @@ import java.util.List;
 @RequestMapping("/api/users")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UserQueryService userQueryService;
 
     @GetMapping
     public List<User> getAllUsers() {
-        return userService.getAllUsers();
+        GetUserByIdQuery GetAllUsersQuery = new GetAllUsersQuery();
+        return userQueryService.handle(GetAllUsersQuery);
     }
 
     @GetMapping("/{id}")
@@ -49,3 +53,4 @@ public class UserController {
         return ResponseEntity.noContent().build();
     }
 }
+*/
