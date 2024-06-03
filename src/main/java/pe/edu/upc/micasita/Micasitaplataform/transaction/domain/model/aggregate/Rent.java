@@ -5,7 +5,7 @@ import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Pro
 import pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.valueobjects.UserID;
 
 import java.time.LocalDateTime;
-import java.util.List;
+
 @Entity
 public class Rent {
     @Id
@@ -15,7 +15,7 @@ public class Rent {
     @Embedded
     private UserID userID;
 
-    private LocalDateTime dateT;
+    private LocalDateTime dateTime;
 
     private String status;
 
