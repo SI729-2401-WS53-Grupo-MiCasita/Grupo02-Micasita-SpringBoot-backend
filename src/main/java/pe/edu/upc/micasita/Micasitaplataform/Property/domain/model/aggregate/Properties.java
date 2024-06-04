@@ -4,12 +4,11 @@ import jakarta.persistence.*;
 
 import lombok.Getter;
 import lombok.Setter;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.Price;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.Status;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.valueobjects.SellerID;
 
 import java.math.BigDecimal;
-import java.util.List;
+
 @Setter
 @Getter
 @Entity
@@ -26,7 +25,7 @@ public class Properties {
 
     @Embedded
     @AttributeOverride(name = "value", column = @Column(name = "price"))
-    private Price price;
+    private BigDecimal price;
 
     @Column(length = 50)
     private String location;
@@ -52,6 +51,38 @@ public class Properties {
     @Embedded
     private SellerID sellerID;
 
+    public void updateInformation(Properties propertyDetails) {
+        this.title = propertyDetails.title;
+        this.description = propertyDetails.description;
+        this.price = propertyDetails.price;
+        this.location = propertyDetails.location;
+        this.status = propertyDetails.status;
+        this.type = propertyDetails.type;
+        this.size = propertyDetails.size;
+        this.bedrooms = propertyDetails.bedrooms;
+        this.bathrooms = propertyDetails.bathrooms;
+        this.garageSpace = propertyDetails.garageSpace;
+        this.yearBuilt = propertyDetails.yearBuilt;
+        this.sellerID = propertyDetails.sellerID;
+    }
 
+    public void changeStatus(String newStatus) {
+        this.status = new Status(newStatus);
+    }
 
+    public void changePrice(BigDecimal newPrice) {
+        this.price = newPrice;
+    }
+
+    public void changeType(String newType) {
+        this.type = newType;
+    }
+
+    public void changeDescription(String newDescription) {
+        this.description = newDescription;
+    }
+
+    public void changeLocation(String newLocation) {
+        this.location = newLocation;
+    }
 }

@@ -1,4 +1,5 @@
 package pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.queries;
 
-public record FindByBathroomsQuery(Integer bathrooms) {
+
+public record GetPropertyByGarageSpaceQuery(Integer garageSpace) {
 }
