@@ -2,6 +2,9 @@ package pe.edu.upc.micasita.Micasitaplataform.User.domain.model.entities;
 
 import lombok.*;
 import jakarta.persistence.*;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.commands.CreateUserCommand;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.commands.DeleteUserCommand;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.commands.UpdateUserCommand;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.Address;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.DNI;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.Email;
@@ -11,11 +14,13 @@ import pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.entities.P
 
 import java.util.List;
 
-@Entity
+
 @Table(name = "users")
-@Data
-@NoArgsConstructor
+@Setter
+@Getter
+@Entity
 @AllArgsConstructor
+@NoArgsConstructor
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,4 +53,27 @@ public class User {
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PaymentMethod> paymentMethods;
+
+    public User(CreateUserCommand command) {
+        this.name = command.name();
+        this.email = command.email();
+        this.password = command.password();
+        this.phone = command.phone();
+        this.dni = command.dni();
+        this.address = command.address();
+    }
+
+    public User(UpdateUserCommand command) {
+        this.name = command.name();
+        this.email = command.email();
+        this.password = command.password();
+        this.phone = command.phone();
+        this.dni = command.dni();
+        this.address = command.address();
+    }
+
+    public User(DeleteUserCommand command) {
+        this.id = command.id();
+    }
+
 }
