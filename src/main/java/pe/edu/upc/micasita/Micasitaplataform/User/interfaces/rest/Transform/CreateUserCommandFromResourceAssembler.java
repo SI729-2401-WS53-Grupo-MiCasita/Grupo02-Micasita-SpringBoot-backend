@@ -4,7 +4,7 @@ import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.commands.CreateUs
 import pe.edu.upc.micasita.Micasitaplataform.User.interfaces.rest.Resource.CreateUserResource;
 
 public class CreateUserCommandFromResourceAssembler {
-    public static CreateUserCommand fromResource(CreateUserResource resource) {
+    public static CreateUserCommand toCommandFromResource(CreateUserResource resource) {
         return new CreateUserCommand(
                 resource.name(),
                 resource.email(),
@@ -14,4 +14,5 @@ public class CreateUserCommandFromResourceAssembler {
                 resource.address()
         );
     }
+
 }

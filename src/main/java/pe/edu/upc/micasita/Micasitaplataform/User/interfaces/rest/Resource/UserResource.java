@@ -1,6 +1,5 @@
 package pe.edu.upc.micasita.Micasitaplataform.User.interfaces.rest.Resource;
 
-import jdk.jshell.Snippet;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.Address;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.DNI;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.Email;

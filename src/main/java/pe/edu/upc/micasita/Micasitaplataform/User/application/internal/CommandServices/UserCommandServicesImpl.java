@@ -1,5 +1,6 @@
 package pe.edu.upc.micasita.Micasitaplataform.User.application.internal.CommandServices;
 
+import org.springframework.stereotype.Service;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.commands.CreateUserCommand;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.commands.DeleteUserCommand;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.commands.UpdateUserCommand;
@@ -7,6 +8,7 @@ import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.entities.User;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.services.UserCommandService;
 import pe.edu.upc.micasita.Micasitaplataform.User.infrastructure.persistence.jpa.repositories.UserRepository;
 
+@Service
 public class UserCommandServicesImpl  implements UserCommandService {
 
 private  final UserRepository userRepository;
@@ -55,7 +57,7 @@ private  final UserRepository userRepository;
 
     @Override
     public Long handle(DeleteUserCommand command) {
-        var user = userRepository.findById(String.valueOf(command.id())).orElseThrow(() -> new IllegalArgumentException("User not found"));
+        var user = userRepository.findById(Integer.valueOf(command.id())).orElseThrow(() -> new IllegalArgumentException("User not found"));
         try {
             userRepository.delete(user);
         } catch (Exception e){
