@@ -22,10 +22,6 @@ public class Controllers {
     private EventsID eventsID;
     @Embedded
     private PublicationsID publicationsID;
-    @Embedded
-    private VisitsID visitsID;
-    @Embedded
-    private TransactionEventsID transactionEventsID;
 
     @ManyToOne
     @JoinColumn(name = "property_id", nullable = false)
@@ -44,6 +40,8 @@ public class Controllers {
     private Visits visits;
 
     @ManyToOne
-    @JoinColumn(name = "transactionEvents_id", nullable = false)
+    @JoinColumn(name = "transaction_events_id")
     private TransactionEvents transactionEvents;
+
+    // Rest of your fields...
 }

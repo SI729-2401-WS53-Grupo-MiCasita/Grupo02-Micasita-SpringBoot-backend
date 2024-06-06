@@ -1,4 +1,4 @@
-package pe.edu.upc.micasita.Micasitaplataform.shared.interfaces.rest.resources;
+package pe.edu.upc.center.platform.shared.interfaces.rest.resources;
 
 public record MessageResource(String message) {
 }
