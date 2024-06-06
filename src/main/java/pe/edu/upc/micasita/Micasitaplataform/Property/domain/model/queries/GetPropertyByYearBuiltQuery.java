@@ -1,4 +1,4 @@
 package pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.queries;
 
-public record FindByLocationQuery(String location) {
+public record GetPropertyByYearBuiltQuery(Integer yearBuilt) {
 }
