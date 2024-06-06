@@ -13,5 +13,4 @@ public class PropertyImages {
     @JoinColumn(name = "property_id", nullable = false)
     private Properties property;
 
-    // Rest of your fields...
 }

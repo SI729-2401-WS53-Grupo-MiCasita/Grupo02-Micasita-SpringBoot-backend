@@ -1,5 +1,10 @@
 package pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.events;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class NotificationReadEvent {
     private Integer notificationId;
     private Integer userId;
@@ -9,19 +14,4 @@ public class NotificationReadEvent {
         this.userId = userId;
     }
 
-    public Integer getNotificationId() {
-        return notificationId;
-    }
-
-    public void setNotificationId(Integer notificationId) {
-        this.notificationId = notificationId;
-    }
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
 }

@@ -6,7 +6,7 @@ import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.Card
 import lombok.*;
 import jakarta.persistence.*;
 import pe.edu.upc.micasita.Micasitaplataform.controllers.domain.model.entities.Controllers;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.ControllerId;
+import pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.valueobjects.ControllersID;
 
 import java.time.LocalDate;
 

@@ -1,5 +1,10 @@
 package pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.events;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class FavoriteRemovedEvent {
     private Long favoriteId;
     private Long userId;
@@ -11,27 +16,4 @@ public class FavoriteRemovedEvent {
         this.propertyId = propertyId;
     }
 
-    public Long getFavoriteId() {
-        return favoriteId;
-    }
-
-    public void setFavoriteId(Long favoriteId) {
-        this.favoriteId = favoriteId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public Long getPropertyId() {
-        return propertyId;
-    }
-
-    public void setPropertyId(Long propertyId) {
-        this.propertyId = propertyId;
-    }
 }

@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.entities.User;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.NotificationMessage;
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.NotificationStatus;
+import pe.edu.upc.micasita.Micasitaplataform.communication.domain.model.aggregate.Publications;
+import pe.edu.upc.micasita.Micasitaplataform.controllers.domain.model.entities.Controllers;
+import pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.aggregate.TransactionEvents;
 
 
 import java.time.LocalDateTime;

@@ -1,14 +1,19 @@
 package pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.entities;
 
 import jakarta.persistence.*;
-import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.entities.User;
+import lombok.Getter;
+import lombok.Setter;
+import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.entities.User;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Properties;
 import pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.valueobjects.PropertiesID;
 import pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.valueobjects.UserID;
 
+@Setter
+@Getter
 @Entity
 public class Favorites {
 
+    // Getters y Setters
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,28 +29,4 @@ public class Favorites {
     // Constructor vacío
     public Favorites() {}
 
-    // Getters y Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Properties getProperties() {
-        return properties;
-    }
-
-    public void setProperties(Properties properties) {
-        this.properties = properties;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
 }
