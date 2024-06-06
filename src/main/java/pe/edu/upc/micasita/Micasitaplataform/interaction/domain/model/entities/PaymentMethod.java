@@ -5,6 +5,9 @@ import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.Card
 import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.CardholderName;
 import lombok.*;
 import jakarta.persistence.*;
+import pe.edu.upc.micasita.Micasitaplataform.controllers.domain.model.entities.Controllers;
+import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.valueobjects.ControllerId;
+
 import java.time.LocalDate;
 
 @Entity
@@ -16,6 +19,10 @@ public class PaymentMethod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
+    @ManyToOne
+    @JoinColumn(name = "controller_id", nullable = false)
+    private Controllers controllers;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
