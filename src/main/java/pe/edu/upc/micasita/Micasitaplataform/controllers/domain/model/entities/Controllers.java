@@ -43,5 +43,4 @@ public class Controllers {
     @JoinColumn(name = "transaction_events_id")
     private TransactionEvents transactionEvents;
 
-    // Rest of your fields...
 }

@@ -1,4 +1,4 @@
-package pe.edu.upc.center.platform.shared.domain.model.entities;
+package pe.edu.upc.micasita.Micasitaplataform.shared.domain.model.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -10,16 +10,15 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
 
+@Getter
 @EntityListeners(AuditingEntityListener.class)
 @MappedSuperclass
 public class AuditableModel {
 
-  @Getter
   @CreatedDate
   @Column(nullable = false, updatable = false)
   private Date createdAt;
 
-  @Getter
   @LastModifiedDate
   @Column(nullable = false)
   private Date updatedAt;

@@ -10,7 +10,7 @@ import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.Stat
 
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.valueobjects.SellerID;
 
-import java.math.BigDecimal;
+
 
 @Setter
 @Getter
@@ -26,9 +26,9 @@ public class Properties {
     @Column(columnDefinition = "TEXT")
     private String description;
 
-    @Embedded
-    @AttributeOverride(name = "value", column = @Column(name = "price"))
-    private BigDecimal price;
+
+    @Column(name = "price")
+    private Long price;
 
     @Column(length = 50)
     private String location;
@@ -41,7 +41,7 @@ public class Properties {
     private String type;
 
     @Column(precision = 15, scale = 2)
-    private BigDecimal size;
+    private Long size;
 
     private Integer bedrooms;
 
@@ -73,7 +73,7 @@ public class Properties {
         this.status = new Status(newStatus);
     }
 
-    public void changePrice(BigDecimal newPrice) {
+    public void changePrice(Long newPrice) {
         this.price = newPrice;
     }
 
