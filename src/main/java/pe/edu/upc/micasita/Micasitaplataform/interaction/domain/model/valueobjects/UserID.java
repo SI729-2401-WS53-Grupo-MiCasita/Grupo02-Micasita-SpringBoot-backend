@@ -7,8 +7,9 @@ public record UserID(Long userID) {
     public UserID() {
         this(0L);
     }
-    public UserID{
-        if(userID < 0){
+
+    public UserID {
+        if (userID < 0) {
             throw new IllegalArgumentException("Profile userId cannot be negative");
         }
     }

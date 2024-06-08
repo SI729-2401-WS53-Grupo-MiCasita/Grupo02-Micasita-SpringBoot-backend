@@ -3,8 +3,7 @@ package pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.entities;
 import jakarta.persistence.*;
 import pe.edu.upc.micasita.Micasitaplataform.Micasita.domain.model.entities.User;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Properties;
-import pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.valueobjects.PropertiesID;
-import pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.valueobjects.UserID;
+import pe.edu.upc.micasita.Micasitaplataform.interaction.domain.model.commands.AddPropertyToFavoritesCommand;
 
 @Entity
 public class Favorites {
@@ -17,12 +16,21 @@ public class Favorites {
     @JoinColumn(name = "property_id", nullable = false)
     private Properties properties;
 
-    @ManyToOne // Cambiado de @OneToOne a @ManyToOne
+    @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     // Constructor vacío
-    public Favorites() {}
+    public Favorites(AddPropertyToFavoritesCommand command) {}
+
+    // Constructor con User
+    public Favorites(User user) {
+        this.user = user;
+    }
+
+    public Favorites() {
+
+    }
 
     // Getters y Setters
     public Long getId() {
@@ -49,3 +57,4 @@ public class Favorites {
         this.user = user;
     }
 }
+

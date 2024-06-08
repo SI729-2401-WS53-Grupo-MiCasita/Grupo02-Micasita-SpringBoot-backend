@@ -34,6 +34,4 @@ public class Properties {
     @Embedded
     private SellerID sellerID;
 
-
-
 }
