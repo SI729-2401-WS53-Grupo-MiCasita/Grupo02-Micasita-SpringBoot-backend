@@ -7,10 +7,17 @@ import pe.edu.upc.micasita.Micasitaplataform.Property.interfaces.rest.resources.
 public class CreatePropertyCommandFromResourceAssembler {
     public static AddPropertyCommand toCommandFromResource(CreatePropertyResource resource) {
         Properties property = new Properties();
-        property.setTitle(resource.propertyName());
-        property.setType(resource.propertyType());
-        property.setLocation(resource.propertyLocation());
-        property.setPrice(resource.propertyPrice());
+        property.setTitle(resource.title());
+        property.setDescription(resource.description());
+        property.setPrice(resource.price());
+        property.setLocation(resource.location());
+        property.setStatus(resource.status());
+        property.setType(resource.type());
+        property.setSize(resource.size());
+        property.setBedrooms(resource.bedrooms());
+        property.setBathrooms(resource.bathrooms());
+        property.setGarageSpace(resource.garageSpace());
+        property.setYearBuilt(resource.yearBuilt());
         return new AddPropertyCommand(property);
     }
 }
