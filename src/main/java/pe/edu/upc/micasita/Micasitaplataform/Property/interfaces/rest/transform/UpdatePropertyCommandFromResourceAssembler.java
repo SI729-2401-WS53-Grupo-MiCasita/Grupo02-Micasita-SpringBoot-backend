@@ -7,10 +7,17 @@ import pe.edu.upc.micasita.Micasitaplataform.Property.interfaces.rest.resources.
 public class UpdatePropertyCommandFromResourceAssembler {
     public static UpdatePropertyCommand toCommandFromResource(UpdatePropertyResource resource) {
         Properties propertyDetails = new Properties();
-        propertyDetails.setTitle(resource.propertyName());
-        propertyDetails.setType(resource.propertyType());
-        propertyDetails.setLocation(resource.propertyLocation());
-        propertyDetails.setPrice(resource.propertyPrice());
-        return new UpdatePropertyCommand(resource.id(), propertyDetails);
+        propertyDetails.setTitle(resource.title());
+        propertyDetails.setDescription(resource.description());
+        propertyDetails.setPrice(resource.price());
+        propertyDetails.setLocation(resource.location());
+        propertyDetails.setStatus(resource.status());
+        propertyDetails.setType(resource.type());
+        propertyDetails.setSize(resource.size());
+        propertyDetails.setBedrooms(resource.bedrooms());
+        propertyDetails.setBathrooms(resource.bathrooms());
+        propertyDetails.setGarageSpace(resource.garageSpace());
+        propertyDetails.setYearBuilt(resource.yearBuilt());
+        return new UpdatePropertyCommand(resource.Id(), propertyDetails);
     }
 }

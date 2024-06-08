@@ -5,6 +5,19 @@ import pe.edu.upc.micasita.Micasitaplataform.Property.interfaces.rest.resources.
 
 public class PropertyResourceFromEntityAssembler {
     public static PropertyResource toResourceFromEntity(Properties entity) {
-        return new PropertyResource(entity.getId(), entity.getTitle(), entity.getType(), entity.getLocation(), entity.getPrice());
+        return new PropertyResource(
+                entity.getId(),
+                entity.getTitle(),
+                entity.getDescription(),
+                entity.getPrice(),
+                entity.getLocation(),
+                entity.getStatus(),
+                entity.getType(),
+                entity.getSize(),
+                entity.getBedrooms(),
+                entity.getBathrooms(),
+                entity.getGarageSpace(),
+                entity.getYearBuilt()
+        );
     }
 }
