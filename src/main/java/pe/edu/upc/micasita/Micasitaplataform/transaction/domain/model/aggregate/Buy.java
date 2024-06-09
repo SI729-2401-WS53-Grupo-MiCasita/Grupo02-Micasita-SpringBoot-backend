@@ -6,7 +6,6 @@ import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Pro
 import pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.valueobjects.PropertyID;
 import pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.valueobjects.UserID;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,7 +19,7 @@ public class Buy {
 
     private LocalDateTime dateTime;
 
-    private BigDecimal amount;
+    private Long amount;
 
     private String status;
 
