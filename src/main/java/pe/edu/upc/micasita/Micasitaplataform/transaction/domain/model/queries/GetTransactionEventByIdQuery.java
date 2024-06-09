@@ -1,4 +1,6 @@
 package pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.queries;
 
-public record GetTransactionEventByIdQuery(Long id) {
+import pe.edu.upc.micasita.Micasitaplataform.transaction.domain.model.valueobjects.TransactionID;
+
+public record GetTransactionEventByIdQuery(TransactionID transactionID) {
 }
