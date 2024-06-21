@@ -4,13 +4,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Property;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.valueobjects.PropertyType;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PropertyRepository extends JpaRepository<Property, Integer> {
+public interface PropertyRepository extends JpaRepository<Property, Long> {
     Optional<Property> findByLocation(@NonNull String location);
 
     boolean existsByLocation(@NonNull String location);

@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.AddPropertyCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.DeletePropertyCommand;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.UpdatePropertyCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.queries.GetAllPropertiesQuery;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.queries.GetPropertyByIdQuery;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.services.PropertyCommandService;
@@ -56,7 +55,8 @@ public class PropertyController {
     //Add Property
     @PostMapping
     public ResponseEntity<PropertyResource> addProperty(@RequestBody CreatePropertyResource resource) {
-        AddPropertyCommand addPropertyCommand = CreatePropertyCommandFromResourceAssembler.toCommandFromResource(resource);
+        AddPropertyCommand addPropertyCommand =
+                CreatePropertyCommandFromResourceAssembler.toCommandFromResource(resource);
         Long propertyId = propertyCommandService.handle(addPropertyCommand);
 
         if (propertyId == 0) {
