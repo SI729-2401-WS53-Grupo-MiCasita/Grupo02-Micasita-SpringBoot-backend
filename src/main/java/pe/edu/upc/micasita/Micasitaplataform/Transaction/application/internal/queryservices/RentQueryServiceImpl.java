@@ -23,7 +23,7 @@ public class RentQueryServiceImpl implements RentQueryService {
 
     @Override
     public Optional<Rent> handle(GetRentByIdQuery query) {
-        return this.rentRepository.findById(query.id());
+        return this.rentRepository.findById(query.idRent());
     }
 
     @Override

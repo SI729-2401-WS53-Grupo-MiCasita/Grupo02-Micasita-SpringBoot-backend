@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.commands.CreateBuyCommand;
+import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.commands.UpdateBuyCommand;
+import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.commands.UpdateRentCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.valueobjects.UserInfo;
 
 import java.time.LocalDateTime;
@@ -53,5 +55,8 @@ public class Buy {
         this.userInfo = new UserInfo(command.name(), command.dni(), command.phoneNumber(), command.email());
         this.idProperty = command.idProperty();
         this.buyAmount = command.buyAmount();
+    }
+    public void update(UpdateBuyCommand command) {
+        this.userInfo = new UserInfo(command.name(), command.dni(), command.phoneNumber(), command.email());
     }
 }

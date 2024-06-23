@@ -3,8 +3,11 @@ package pe.edu.upc.micasita.Micasitaplataform.Transaction.application.internal.c
 import org.springframework.stereotype.Service;
 import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.aggregate.Rent;
 import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.commands.CreateRentCommand;
+import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.commands.UpdateRentCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.services.RentCommandService;
 import pe.edu.upc.micasita.Micasitaplataform.Transaction.infrastructure.persistence.jpa.RentRepository;
+
+import java.util.Optional;
 
 @Service
 public class RentCommandServiceImpl implements RentCommandService {
@@ -31,5 +34,27 @@ public class RentCommandServiceImpl implements RentCommandService {
         }
 
         return rent.getIdRent();
+    }
+    @Override
+    public boolean handle(UpdateRentCommand command) {
+        Optional<Rent> optionalRent = rentRepository.findById(command.idRent());
+        if (optionalRent.isPresent()) {
+            Rent rent = optionalRent.get();
+            rent.update(command);
+            rentRepository.save(rent);
+            return true;
+        } else {
+            return false;
+        }
+    }
+    @Override
+    public boolean delete(Long id) {
+        Optional<Rent> optionalRent = rentRepository.findById(id);
+        if (optionalRent.isPresent()) {
+            rentRepository.delete(optionalRent.get());
+            return true;
+        } else {
+            return false;
+        }
     }
 }

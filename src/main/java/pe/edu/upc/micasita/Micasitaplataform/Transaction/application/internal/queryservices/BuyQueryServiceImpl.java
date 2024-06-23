@@ -22,7 +22,7 @@ public class BuyQueryServiceImpl implements BuyQueryService {
 
     @Override
     public Optional<Buy> handle(GetBuyByIdQuery query) {
-        return this.buyRepository.findById(query.id());
+        return this.buyRepository.findById(query.idBuy());
     }
 
     @Override
