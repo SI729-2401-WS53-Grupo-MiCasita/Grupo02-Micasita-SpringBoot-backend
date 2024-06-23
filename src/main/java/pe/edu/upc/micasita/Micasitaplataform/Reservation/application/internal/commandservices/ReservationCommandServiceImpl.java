@@ -9,6 +9,8 @@ import pe.edu.upc.micasita.Micasitaplataform.Reservation.domain.model.commands.D
 import pe.edu.upc.micasita.Micasitaplataform.Reservation.domain.services.ReservationCommandService;
 import pe.edu.upc.micasita.Micasitaplataform.Reservation.infrastructure.persistence.jpa.ReservationRepository;
 
+import java.util.Optional;
+
 @Service
 public class ReservationCommandServiceImpl implements ReservationCommandService {
 
@@ -32,7 +34,7 @@ public class ReservationCommandServiceImpl implements ReservationCommandService 
     }
 
     @Override
-    public void handle(DeleteReservationCommand command) {
+    public Optional<Reservation> handle(DeleteReservationCommand command) {
         if (!reservationRepository.existsById(command.id())) {
             throw new IllegalArgumentException("Reservation does not exist");
         }
@@ -41,6 +43,7 @@ public class ReservationCommandServiceImpl implements ReservationCommandService 
         } catch (Exception e) {
             throw new IllegalArgumentException("Error while deleting reservation: " + e.getMessage());
         }
+        return null;
     }
 
     @Override

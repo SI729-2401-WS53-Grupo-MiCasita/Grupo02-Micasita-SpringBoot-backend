@@ -9,8 +9,7 @@ import pe.edu.upc.micasita.Micasitaplataform.Reservation.domain.model.commands.C
 import pe.edu.upc.micasita.Micasitaplataform.Reservation.domain.model.commands.DeleteReservationCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Reservation.domain.model.queries.GetAllReservationQuery;
 import pe.edu.upc.micasita.Micasitaplataform.Reservation.domain.model.queries.GetReservationByIdQuery;
-import pe.edu.upc.micasita.Micasitaplataform.Reservation.domain.services.ReservationCommandService;
-import pe.edu.upc.micasita.Micasitaplataform.Reservation.domain.services.ReservationQueryService;
+import pe.edu.upc.micasita.Micasitaplataform.Reservation.interfaces.acl.ProfilesContextFacade;
 import pe.edu.upc.micasita.Micasitaplataform.Reservation.interfaces.rest.resources.CreateReservationResource;
 import pe.edu.upc.micasita.Micasitaplataform.Reservation.interfaces.rest.resources.ReservationResource;
 import pe.edu.upc.micasita.Micasitaplataform.Reservation.interfaces.rest.transform.CreateReservationCommandFromResourceAssembler;
@@ -23,18 +22,17 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "api/v1/reservations", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name="Reservation", description = "Reservation Management Endpoints")
 public class ReservationController {
-    private final ReservationCommandService reservationCommandService;
-    private final ReservationQueryService reservationQueryService;
+    private final ProfilesContextFacade profileContextFacade;
 
-    public ReservationController(ReservationCommandService reservationCommandService, ReservationQueryService reservationQueryService) {
-        this.reservationCommandService = reservationCommandService;
-        this.reservationQueryService = reservationQueryService;
+    public ReservationController(ProfilesContextFacade profileContextFacade) {
+        this.profileContextFacade = profileContextFacade;
     }
+
 
     @GetMapping("/{reservationId}")
     public ResponseEntity<ReservationResource> getReservationById(@PathVariable Long reservationId){
         var getReservationByIdQuery = new GetReservationByIdQuery(reservationId);
-        var reservation = reservationQueryService.handle(getReservationByIdQuery);
+        var reservation = profileContextFacade.getReservationById(reservationId);
         if(reservation.isEmpty())
             return ResponseEntity.badRequest().build();
         var reservationResource = ReservationResourceFromEntityAssembler.toResourceFromEntity(reservation.get());
@@ -43,7 +41,7 @@ public class ReservationController {
     @GetMapping
     public ResponseEntity<List<ReservationResource>> getAllReservation(){
         var getAllReservationQuery = new GetAllReservationQuery();
-        var reservations = reservationQueryService.handle(getAllReservationQuery);
+        var reservations = profileContextFacade.getAllReservations();
         var reservationResources = reservations.stream()
                 .map(ReservationResourceFromEntityAssembler::toResourceFromEntity)
                 .collect(Collectors.toList());
@@ -54,13 +52,12 @@ public class ReservationController {
     public ResponseEntity<ReservationResource>addReservation(@RequestBody CreateReservationResource resource){
         CreateReservationCommand createReservationCommand =
                 CreateReservationCommandFromResourceAssembler.toCommandFromResource(resource);
-        Long reservationId = reservationCommandService.handle(createReservationCommand);
+        Long reservationId = profileContextFacade.createReservation(createReservationCommand);
 
         if(reservationId == 0){
             return ResponseEntity.badRequest().build();
         }
-        var getReservationByIdQuery = new GetReservationByIdQuery(reservationId);
-        var reservation = reservationQueryService.handle(getReservationByIdQuery);
+        var reservation = profileContextFacade.getReservationById(reservationId);
 
         if(reservation.isEmpty())
             return ResponseEntity.badRequest().build();
@@ -71,7 +68,7 @@ public class ReservationController {
     @DeleteMapping("/{reservationId}")
     public ResponseEntity<?> deleteReservation(@PathVariable Long reservationId){
         var deleteReservationCommand = new DeleteReservationCommand(reservationId);
-        reservationCommandService.handle(deleteReservationCommand);
+        profileContextFacade.deleteReservation(deleteReservationCommand);
         return ResponseEntity.ok("Reservation with given id successfully deleted");
     }
 }
