@@ -27,7 +27,9 @@ public class Buy {
 
     @Column(name = "buy_amount", nullable = false)
     private Double buyAmount;
-
+    @ManyToOne
+    @JoinColumn(name = "id_voucher")
+    private Voucher voucher;
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
