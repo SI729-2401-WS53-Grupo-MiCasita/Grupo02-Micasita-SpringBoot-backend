@@ -27,6 +27,10 @@ public class Rent  {
     @Column(name = "rent_amount")
     private Double rentAmount;
 
+    @ManyToOne
+    @JoinColumn(name = "id_voucher")
+
+    private Voucher voucher;
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
