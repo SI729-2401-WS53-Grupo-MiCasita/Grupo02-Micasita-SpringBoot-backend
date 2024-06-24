@@ -1,14 +1,10 @@
-package pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.entities;
+package pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Property;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.AddPropertyCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.AddPropertyImageCommand;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.valueobjects.PropertyStatus;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.valueobjects.PropertyType;
 
 @Setter
 @Getter
