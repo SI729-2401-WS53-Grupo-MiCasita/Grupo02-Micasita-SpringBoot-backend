@@ -3,6 +3,7 @@ package pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.aggregate
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.commands.CreateVoucherCommand;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,6 +25,12 @@ public class Voucher {
 
     @Column(name = "buy_amount")
     private Double buyAmount;
+
+    @Column(name = "id_buy")
+    private Long idBuy;
+
+    @Column(name = "id_rent")
+    private Long idRent;
 
     @Column(name = "rent_amount")
     private Double rentAmount;
@@ -50,5 +57,11 @@ public class Voucher {
     public Voucher(Double buyAmount, Double rentAmount) {
         this.buyAmount = buyAmount;
         this.rentAmount = rentAmount;
+    }
+    public Voucher(CreateVoucherCommand command){
+        this.idBuy = command.idBuy();
+        this.idRent = command.idRent();
+        this.buyAmount = command.buyAmount();
+        this.rentAmount = command.rentAmount();
     }
 }
