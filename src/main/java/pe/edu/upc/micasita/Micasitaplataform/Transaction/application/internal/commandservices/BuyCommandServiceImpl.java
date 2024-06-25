@@ -34,7 +34,7 @@ public class BuyCommandServiceImpl implements BuyCommandService {
             throw new IllegalArgumentException("Error while saving buy: " + e.getMessage());
         }
 
-        return buy.getIdBuy();
+        return buy.getId();
     }
     @Override
     public boolean handle(UpdateBuyCommand command) {

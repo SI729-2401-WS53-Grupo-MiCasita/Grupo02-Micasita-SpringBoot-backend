@@ -5,7 +5,7 @@ import pe.edu.upc.micasita.Micasitaplataform.Transaction.interfaces.rest.resourc
 
 public class BuyResourceFromEntityAssembler {
     public static BuyResource toResourceFromEntity(Buy entity) {
-        return new BuyResource(entity.getIdBuy(), entity.getUserInfo().name(), entity.getUserInfo().dni(),
+        return new BuyResource(entity.getId(), entity.getUserInfo().name(), entity.getUserInfo().dni(),
                 entity.getUserInfo().phoneNumber(), entity.getUserInfo().email(), entity.getBuyAmount(),entity.getIdProperty());
     }
 }

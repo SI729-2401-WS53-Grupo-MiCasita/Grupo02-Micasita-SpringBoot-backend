@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface BuyRepository extends JpaRepository<Buy, Long> {
-    Optional<Buy> findBuyByIdBuy(Long idBuy);
+    Optional<Buy> findBuyById(Long idBuy);
     Optional<Buy> findBuyByUserInfoNameAndUserInfoDni(String name, String dni);
     List<Buy> findAll();
     Optional<Buy> findBuyByIdPropertyAndUserInfoNameAndUserInfoDni(Long idProperty, String name, String dni);

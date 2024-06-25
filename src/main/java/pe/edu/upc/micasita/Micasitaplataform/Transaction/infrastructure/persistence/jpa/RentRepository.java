@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface RentRepository extends JpaRepository<Rent, Long> {
-    Optional<Rent> findRentByIdRent(Long idRent);
+    Optional<Rent> findRentById(Long idRent);
     Optional<Rent> findRentByUserInfoNameAndUserInfoDniAndUserInfoPhoneNumber(String name, String dni, String phoneNumber);
     List<Rent> findAll();
     Optional<Rent> findRentByIdPropertyAndUserInfoNameAndUserInfoDni(Long idProperty, String name, String dni);

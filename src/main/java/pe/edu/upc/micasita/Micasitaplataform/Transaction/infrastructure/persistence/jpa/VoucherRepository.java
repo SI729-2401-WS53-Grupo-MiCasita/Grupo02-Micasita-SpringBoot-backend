@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @Repository
 public interface VoucherRepository extends JpaRepository<Voucher, Long> {
-    Optional<Voucher> findVoucherByIdVoucher(Long idVoucher);
+    Optional<Voucher> findVoucherById(Long idVoucher);
     Optional<Voucher> findVoucherByIdBuyAndBuyAmount(Long idBuy, Double buyAmount);
     List<Voucher> findAll();
     Optional<Voucher> findVoucherByIdRentAndRentAmount(Long idRent, Double rentAmount);

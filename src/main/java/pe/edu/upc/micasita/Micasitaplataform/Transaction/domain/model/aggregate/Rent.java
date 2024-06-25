@@ -13,10 +13,10 @@ import java.time.LocalDateTime;
 @Setter
 @Getter
 @Entity
-public class Rent  {
-    @Id
+public class Rent extends AuditableAbstractAggregateRoot  {
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idRent;
+    private Long idRent;*/
 
     @Embedded
     private UserInfo userInfo;
@@ -29,24 +29,8 @@ public class Rent  {
 
     @ManyToOne
     @JoinColumn(name = "id_voucher")
-
     private Voucher voucher;
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
     public Rent() {}
     public Rent(String name, String dni, String phoneNumber, String email) {
         this.userInfo = new UserInfo(name, dni, phoneNumber, email);}

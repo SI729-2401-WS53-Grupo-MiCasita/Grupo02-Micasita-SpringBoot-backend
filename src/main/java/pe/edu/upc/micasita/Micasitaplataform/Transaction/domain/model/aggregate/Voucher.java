@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.commands.CreateVoucherCommand;
+import pe.edu.upc.micasita.Micasitaplataform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,10 +13,10 @@ import java.util.List;
 @Getter
 @Entity
 @Table(name = "vouchers")
-public class Voucher {
-    @Id
+public class Voucher extends AuditableAbstractAggregateRoot {
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idVoucher;
+    private Long idVoucher;*/
 
     @OneToMany(mappedBy = "voucher")
     private List<Buy> buys;
@@ -35,22 +36,6 @@ public class Voucher {
     @Column(name = "rent_amount")
     private Double rentAmount;
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
 
     public Voucher() {}
 
