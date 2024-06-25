@@ -3,7 +3,6 @@ package pe.edu.upc.micasita.Micasitaplataform.users.application.CommandServices;
 import org.springframework.stereotype.Service;
 import pe.edu.upc.micasita.Micasitaplataform.users.domain.model.commads.CreateUserCommand;
 import pe.edu.upc.micasita.Micasitaplataform.users.domain.model.commads.DeleteUserCommand;
-import pe.edu.upc.micasita.Micasitaplataform.users.domain.model.commads.UpdateUserCommand;
 import pe.edu.upc.micasita.Micasitaplataform.users.domain.model.entities.User;
 import pe.edu.upc.micasita.Micasitaplataform.users.domain.services.UserCommandServices;
 import pe.edu.upc.micasita.Micasitaplataform.users.infrastructure.persistence.jpa.repositories.UserRepository;
@@ -36,16 +35,6 @@ public class UserCommandServicesImpl implements UserCommandServices {
         return user.getId();
     }
 
-    @Override
-    public Optional<User> handle(UpdateUserCommand command) {
-        if(!userRepository.existsById(command.id()))
-            throw new IllegalArgumentException("User not found");
-        var userToUpdate = userRepository.findById(command.id()).get();
-        if(userRepository.existsByNameAndDni(command.name(), command.dni()))
-            throw new IllegalArgumentException("User with same name and dni already exists");
-        var updatedUser = userRepository.save(userToUpdate.update(command.name(), command.dni(), command.email(), command.password(), command.phone(),command.address()));
-        return Optional.of(updatedUser);
-    }
 
     @Override
     public void handle(DeleteUserCommand command) {

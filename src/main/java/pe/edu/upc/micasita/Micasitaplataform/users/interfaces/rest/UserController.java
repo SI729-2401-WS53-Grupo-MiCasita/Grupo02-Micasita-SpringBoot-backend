@@ -5,9 +5,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import pe.edu.upc.micasita.Micasitaplataform.users.application.CommandServices.UserCommandServicesImpl;
 import pe.edu.upc.micasita.Micasitaplataform.users.domain.model.commads.CreateUserCommand;
 import pe.edu.upc.micasita.Micasitaplataform.users.domain.model.commads.DeleteUserCommand;
 import pe.edu.upc.micasita.Micasitaplataform.users.domain.model.queries.GetUserByIdQuery;
+import pe.edu.upc.micasita.Micasitaplataform.users.domain.model.queries.GetUserByPhoneQuery;
 import pe.edu.upc.micasita.Micasitaplataform.users.domain.services.UserCommandServices;
 import pe.edu.upc.micasita.Micasitaplataform.users.domain.services.UserQueryServices;
 import pe.edu.upc.micasita.Micasitaplataform.users.interfaces.rest.resources.CreateUserResource;
@@ -22,17 +24,31 @@ public class UserController {
 
     private final UserCommandServices userCommandService;
     private final UserQueryServices userQueryService;
+    private final UserCommandServicesImpl userCommandServicesImpl;
 
-    public UserController(UserCommandServices userCommandService, UserQueryServices userQueryService) {
+    public UserController(UserCommandServices userCommandService, UserQueryServices userQueryService, UserCommandServicesImpl userCommandServicesImpl) {
         this.userCommandService = userCommandService;
         this.userQueryService = userQueryService;
+        this.userCommandServicesImpl = userCommandServicesImpl;
     }
+
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResource> getUserById(@PathVariable Long id) {
         var getUserByIdQuery = new GetUserByIdQuery(id);
         var user = userQueryService.handle(getUserByIdQuery);
         if(user.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        var userResource = UserResourceFromEntityAssembler.toResourceFromEntity(user.get());
+        return ResponseEntity.ok(userResource);
+    }
+
+    @GetMapping("/phone/{phone}")
+    public ResponseEntity<UserResource> getUserByPhone(@PathVariable String phone) {
+        var getUserByPhoneQuery = new GetUserByPhoneQuery(phone);
+        var user = userQueryService.handle(getUserByPhoneQuery);
+        if (user.isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
         var userResource = UserResourceFromEntityAssembler.toResourceFromEntity(user.get());
@@ -55,6 +71,8 @@ public class UserController {
         var userResource = UserResourceFromEntityAssembler.toResourceFromEntity(user.get());
         return new ResponseEntity<>(userResource, HttpStatus.CREATED);
     }
+
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUser(@PathVariable Long id){
