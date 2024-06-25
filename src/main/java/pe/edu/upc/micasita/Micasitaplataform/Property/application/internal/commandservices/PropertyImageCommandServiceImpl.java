@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.AddPropertyImageCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.DeletePropertyImageCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.UpdatePropertyImageCommand;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.entities.PropertyImage;
+import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.PropertyImage;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.services.PropertyImageCommandService;
 import pe.edu.upc.micasita.Micasitaplataform.Property.infrastructure.persistence.jpa.repositories.PropertyImageRepository;
 

@@ -3,8 +3,7 @@ package pe.edu.upc.micasita.Micasitaplataform.Property.infrastructure.persistenc
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Property;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.entities.PropertyImage;
+import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.PropertyImage;
 
 import java.util.Optional;
 

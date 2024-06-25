@@ -1,7 +1,7 @@
 package pe.edu.upc.micasita.Micasitaplataform.Property.domain.services;
 
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.*;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.entities.PropertyImage;
+import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.PropertyImage;
 
 import java.util.Optional;
 
