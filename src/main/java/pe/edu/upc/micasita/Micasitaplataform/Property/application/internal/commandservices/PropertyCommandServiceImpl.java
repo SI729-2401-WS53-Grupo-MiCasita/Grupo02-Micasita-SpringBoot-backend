@@ -2,7 +2,7 @@ package pe.edu.upc.micasita.Micasitaplataform.Property.application.internal.comm
 
 
 import org.springframework.stereotype.Service;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Properties;
+import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Property;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.*;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.services.PropertyCommandService;
 import pe.edu.upc.micasita.Micasitaplataform.Property.infrastructure.persistence.jpa.repositories.PropertyRepository;
@@ -19,23 +19,47 @@ public class PropertyCommandServiceImpl implements PropertyCommandService {
     }
 
     @Override
-    public Integer handle(AddPropertyCommand command) {
-        var property = command.property();
-        if (propertyRepository.existsByLocation(property.getLocation())) {
-            throw new IllegalArgumentException("Ya existe una propiedad con esta ubicación");
+    public Long handle(AddPropertyCommand command) {
+        var property = new Property(command);
+        try {
+            propertyRepository.save(property);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error while saving property: " + e.getMessage());
         }
         propertyRepository.save(property);
         return property.getId();
     }
 
     @Override
-    public Optional<Properties> handle(UpdatePropertyCommand command) {
-        return Optional.ofNullable(propertyRepository.findById(command.id())
-                .map(property -> {
-                    property.updateInformation(command.propertyDetails());
-                    return propertyRepository.save(property);
-                })
-                .orElseThrow(() -> new IllegalArgumentException("Property does not exist")));
+    public Optional<Property> handle(UpdatePropertyCommand command) {
+        if (propertyRepository.existsByLocationAndIdIsNot(command.location(), command.id())) {
+            throw new IllegalArgumentException("Property with same location already exists");
+        }
+        var result = propertyRepository.findById(command.id());
+        if (result.isEmpty()) {
+            throw new IllegalArgumentException("Property does not exist");
+        }
+        var propertyToUpdate = result.get();
+        try {
+            var updatedProperty = propertyRepository.save(propertyToUpdate.updateInformation(
+                    command.title(),
+                    command.description(),
+                    command.owner(),
+                    command.price(),
+                    command.location(),
+                    command.status(),
+                    command.type(),
+                    command.currency(),
+                    command.size(),
+                    command.bedrooms(),
+                    command.bathrooms(),
+                    command.garageSpace(),
+                    command.yearBuilt()
+            ));
+            return Optional.of(updatedProperty);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error while updating property: " + e.getMessage());
+        }
     }
 
     @Override
@@ -43,7 +67,11 @@ public class PropertyCommandServiceImpl implements PropertyCommandService {
         if (!propertyRepository.existsById(command.id())) {
             throw new IllegalArgumentException("Property does not exist");
         }
-        propertyRepository.deleteById(command.id());
+        try{
+            propertyRepository.deleteById(command.id());
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error while deleting property: " + e.getMessage());
+        }
     }
 
     @Override

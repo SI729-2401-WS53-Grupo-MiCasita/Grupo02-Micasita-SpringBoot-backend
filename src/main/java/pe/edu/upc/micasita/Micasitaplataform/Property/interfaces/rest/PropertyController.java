@@ -7,17 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.AddPropertyCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.DeletePropertyCommand;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.UpdatePropertyCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.queries.GetAllPropertiesQuery;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.queries.GetPropertyByIdQuery;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.services.PropertyCommandService;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.services.PropertyQueryService;
 import pe.edu.upc.micasita.Micasitaplataform.Property.interfaces.rest.resources.CreatePropertyResource;
-import pe.edu.upc.micasita.Micasitaplataform.Property.interfaces.rest.resources.DeletePropertyResource;
 import pe.edu.upc.micasita.Micasitaplataform.Property.interfaces.rest.resources.PropertyResource;
 import pe.edu.upc.micasita.Micasitaplataform.Property.interfaces.rest.resources.UpdatePropertyResource;
 import pe.edu.upc.micasita.Micasitaplataform.Property.interfaces.rest.transform.CreatePropertyCommandFromResourceAssembler;
-import pe.edu.upc.micasita.Micasitaplataform.Property.interfaces.rest.transform.DeletePropertyCommandFromResourceAssembler;
 import pe.edu.upc.micasita.Micasitaplataform.Property.interfaces.rest.transform.PropertyResourceFromEntityAssembler;
 import pe.edu.upc.micasita.Micasitaplataform.Property.interfaces.rest.transform.UpdatePropertyCommandFromResourceAssembler;
 
@@ -37,7 +34,7 @@ public class PropertyController {
     }
     //Get Property by ID
     @GetMapping("/{propertyId}")
-    public ResponseEntity<PropertyResource> getPropertyById(@PathVariable Integer propertyId) {
+    public ResponseEntity<PropertyResource> getPropertyById(@PathVariable Long propertyId) {
         var getPropertyByIdQuery = new GetPropertyByIdQuery(propertyId);
         var property = propertyQueryService.handle(getPropertyByIdQuery);
         if (property.isEmpty())
@@ -57,23 +54,37 @@ public class PropertyController {
     }
     //Add Property
     @PostMapping
-    public ResponseEntity<Void> addProperty(@RequestBody CreatePropertyResource resource) {
+    public ResponseEntity<PropertyResource> addProperty(@RequestBody CreatePropertyResource resource) {
         AddPropertyCommand addPropertyCommand = CreatePropertyCommandFromResourceAssembler.toCommandFromResource(resource);
-        propertyCommandService.handle(addPropertyCommand);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        Long propertyId = propertyCommandService.handle(addPropertyCommand);
+
+        if (propertyId == 0) {
+            return ResponseEntity.badRequest().build();
+        }
+        var getPropertyByIdQuery = new GetPropertyByIdQuery(propertyId);
+        var property = propertyQueryService.handle(getPropertyByIdQuery);
+
+        if (property.isEmpty())
+            return ResponseEntity.badRequest().build();
+        var propertyResource = PropertyResourceFromEntityAssembler.toResourceFromEntity(property.get());
+        return new ResponseEntity<>(propertyResource, HttpStatus.CREATED);
     }
     //Update Property
     @PutMapping("/{propertyId}")
-    public ResponseEntity<Void> updateProperty(@PathVariable Long propertyId, @RequestBody UpdatePropertyResource resource) {
-        UpdatePropertyCommand updatePropertyCommand = UpdatePropertyCommandFromResourceAssembler.toCommandFromResource(resource);
-        propertyCommandService.handle(updatePropertyCommand);
-        return ResponseEntity.ok().build();
+    public ResponseEntity<PropertyResource> updateProperty(@PathVariable Long propertyId, @RequestBody UpdatePropertyResource resource) {
+        var updatePropertyCommand = UpdatePropertyCommandFromResourceAssembler.toCommandFromResource(propertyId,resource);
+        var updatedProperty = propertyCommandService.handle(updatePropertyCommand);
+        if (updatedProperty.isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+        var propertyResource = PropertyResourceFromEntityAssembler.toResourceFromEntity(updatedProperty.get());
+        return ResponseEntity.ok(propertyResource);
     }
     //Delete Property
     @DeleteMapping("/{propertyId}")
-    public ResponseEntity<Void> deleteProperty(@PathVariable Long propertyId, @RequestBody DeletePropertyResource resource) {
-        DeletePropertyCommand deletePropertyCommand = DeletePropertyCommandFromResourceAssembler.toCommandFromResource(resource);
+    public ResponseEntity<?> deleteProperty(@PathVariable Long propertyId) {
+        var deletePropertyCommand = new DeletePropertyCommand(propertyId);
         propertyCommandService.handle(deletePropertyCommand);
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok("Property with given id successfully deleted");
     }
 }

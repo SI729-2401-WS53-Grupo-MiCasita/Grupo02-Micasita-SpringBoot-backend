@@ -3,40 +3,35 @@ package pe.edu.upc.micasita.Micasitaplataform.Property.infrastructure.persistenc
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Repository;
-import pe.edu.upc.micasita.Micasitaplataform.User.domain.model.valueobjects.Status;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Properties;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.valueobjects.SellerID;
+import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Property;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PropertyRepository extends JpaRepository<Properties, Integer> {
-    Optional<Properties> findByLocation(@NonNull String location);
+public interface PropertyRepository extends JpaRepository<Property, Long> {
+    Optional<Property> findByLocation(@NonNull String location);
 
     boolean existsByLocation(@NonNull String location);
-    boolean existsByLocationAndIdIsNot(@NonNull String location, @NonNull Integer id);
+    boolean existsByLocationAndIdIsNot(@NonNull String location, @NonNull Long id);
+    boolean existsById(@NonNull Long id);
+    void deleteById(@NonNull Long id);
+    Optional<Property> findByBedrooms(@NonNull Integer bedrooms);
 
-    Optional<Properties> findBySellerID(@NonNull SellerID sellerID);
 
-    Optional<Properties> findByBedrooms(@NonNull Integer bedrooms);
+    Optional<Property> findByStatus(Property status);
 
-    List<Properties> findByPriceBetween(@NonNull Long Long1, @NonNull Long Long2);
+    Optional<Property> findByType(Property type);
 
-    Optional<Properties> findByStatus(@NonNull Status status);
 
-    Optional<Properties> findByType(@NonNull String type);
+    Optional<Property> findByBathrooms(@NonNull Integer bathrooms);
 
-    List<Properties> findBySizeBetween(@NonNull Long Long1, @NonNull Long Long2);
+    Optional<Property> findByGarageSpace(@NonNull Integer integer);
 
-    Optional<Properties> findByBathrooms(@NonNull Integer bathrooms);
-
-    Optional<Properties> findByGarageSpace(@NonNull Integer integer);
-
-    Optional<Properties> findByYearBuilt(@NonNull Integer integer);
+    Optional<Property> findByYearBuilt(@NonNull Integer integer);
 
     @NonNull
-    Optional<Properties> findById(@NonNull Integer id);
+    Optional<Property> findById(@NonNull Long id);
     @NonNull
-    List<Properties> findAll();
+    List<Property> findAll();
 }

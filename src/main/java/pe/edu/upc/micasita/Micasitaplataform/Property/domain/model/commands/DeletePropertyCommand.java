@@ -1,4 +1,4 @@
 package pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands;
 
-public record DeletePropertyCommand(Integer id) {
+public record DeletePropertyCommand(Long id) {
 }

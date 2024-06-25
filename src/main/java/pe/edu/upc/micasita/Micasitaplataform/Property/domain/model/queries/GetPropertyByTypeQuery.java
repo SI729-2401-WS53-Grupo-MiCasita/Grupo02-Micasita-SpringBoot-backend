@@ -1,4 +1,6 @@
 package pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.queries;
 
-public record GetPropertyByTypeQuery(String type) {
+import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Property;
+
+public record GetPropertyByTypeQuery(Property type) {
 }

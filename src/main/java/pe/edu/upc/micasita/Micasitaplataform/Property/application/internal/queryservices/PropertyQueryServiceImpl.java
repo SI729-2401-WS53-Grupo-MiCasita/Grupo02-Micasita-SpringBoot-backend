@@ -2,7 +2,7 @@ package pe.edu.upc.micasita.Micasitaplataform.Property.application.internal.quer
 
 
 import org.springframework.stereotype.Service;
-import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Properties;
+import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.aggregate.Property;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.queries.*;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.services.PropertyQueryService;
 import pe.edu.upc.micasita.Micasitaplataform.Property.infrastructure.persistence.jpa.repositories.PropertyRepository;
@@ -19,62 +19,51 @@ public class PropertyQueryServiceImpl implements PropertyQueryService {
         this.propertyRepository = propertyRepository;
     }
     @Override
-    public Optional<Properties> handle(GetPropertyByLocationQuery query) {
+    public Optional<Property> handle(GetPropertyByLocationQuery query) {
         return propertyRepository.findByLocation(query.location());
     }
 
-    @Override
-    public List<Properties> handle(GetPropertyByPriceRangeQuery query) {
-        return propertyRepository.findByPriceBetween(query.minPrice(), query.maxPrice());
-    }
 
     @Override
-    public Optional<Properties> handle(GetPropertyByStatusQuery query) {
+    public Optional<Property> handle(GetPropertyByStatusQuery query) {
         return propertyRepository.findByStatus(query.status());
     }
 
     @Override
-    public Optional<Properties> handle(GetPropertyByTypeQuery query) {
+    public Optional<Property> handle(GetPropertyByTypeQuery query) {
         return propertyRepository.findByType(query.type());
     }
 
-    @Override
-    public List<Properties> handle(GetPropertyBySizeRangeQuery query) {
-        return propertyRepository.findBySizeBetween(query.minSize(), query.maxSize());
-    }
+
 
     @Override
-    public Optional<Properties> handle(GetPropertyByBedroomsQuery query) {
+    public Optional<Property> handle(GetPropertyByBedroomsQuery query) {
         return propertyRepository.findByBedrooms(query.bedrooms());
     }
 
     @Override
-    public Optional<Properties> handle(GetPropertyByBathroomsQuery query) {
+    public Optional<Property> handle(GetPropertyByBathroomsQuery query) {
         return propertyRepository.findByBathrooms(query.bathrooms());
     }
 
     @Override
-    public Optional<Properties> handle(GetPropertyByGarageSpaceQuery query) {
+    public Optional<Property> handle(GetPropertyByGarageSpaceQuery query) {
         return propertyRepository.findByGarageSpace(query.garageSpace());
     }
 
     @Override
-    public Optional<Properties> handle(GetPropertyByYearBuiltQuery query) {
+    public Optional<Property> handle(GetPropertyByYearBuiltQuery query) {
         return propertyRepository.findByYearBuilt(query.yearBuilt());
     }
 
-    @Override
-    public Optional<Properties> handle(GetPropertyBySellerIDQuery query) {
-        return propertyRepository.findBySellerID(query.sellerID());
-    }
 
     @Override
-    public Optional<Properties> handle(GetPropertyByIdQuery query) {
+    public Optional<Property> handle(GetPropertyByIdQuery query) {
         return propertyRepository.findById(query.propertyId());
     }
 
     @Override
-    public List<Properties> handle(GetAllPropertiesQuery query) {
+    public List<Property> handle(GetAllPropertiesQuery query) {
         return propertyRepository.findAll();
     }
 }
