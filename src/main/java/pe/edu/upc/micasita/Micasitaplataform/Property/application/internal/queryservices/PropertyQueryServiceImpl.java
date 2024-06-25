@@ -23,10 +23,6 @@ public class PropertyQueryServiceImpl implements PropertyQueryService {
         return propertyRepository.findByLocation(query.location());
     }
 
-    @Override
-    public List<Property> handle(GetPropertyByPriceRangeQuery query) {
-        return propertyRepository.findByPriceBetween(query.minPrice(), query.maxPrice());
-    }
 
     @Override
     public Optional<Property> handle(GetPropertyByStatusQuery query) {
@@ -38,10 +34,7 @@ public class PropertyQueryServiceImpl implements PropertyQueryService {
         return propertyRepository.findByType(query.type());
     }
 
-    @Override
-    public List<Property> handle(GetPropertyBySizeRangeQuery query) {
-        return propertyRepository.findBySizeBetween(query.minSize(), query.maxSize());
-    }
+
 
     @Override
     public Optional<Property> handle(GetPropertyByBedroomsQuery query) {

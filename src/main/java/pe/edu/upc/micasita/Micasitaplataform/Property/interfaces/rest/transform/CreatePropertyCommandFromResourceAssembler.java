@@ -8,16 +8,17 @@ public class CreatePropertyCommandFromResourceAssembler {
         return new AddPropertyCommand(
                 resource.title(),
                 resource.description(),
+                resource.owner(),
                 resource.price(),
                 resource.location(),
                 resource.status(),
                 resource.type(),
+                resource.currency(),
                 resource.size(),
                 resource.bedrooms(),
                 resource.bathrooms(),
                 resource.garageSpace(),
                 resource.yearBuilt()
         );
-
     }
 }

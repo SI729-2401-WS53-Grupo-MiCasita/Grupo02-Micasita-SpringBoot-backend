@@ -11,4 +11,5 @@ import java.util.Optional;
 public interface PropertyImageRepository extends JpaRepository<PropertyImage, Long> {
     @NonNull
     Optional<PropertyImage> findById(@NonNull Long id);
+    Optional<PropertyImage> findByPropertyId(@NonNull Long propertyId);
 }

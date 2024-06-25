@@ -24,9 +24,11 @@ public class Property extends AuditableAbstractAggregateRoot<Property> {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    @Column(length = 50)
+    private String owner;
 
     @Column(name = "price")
-    private Long price;
+    private String price;
 
     @Column(length = 50)
     private String location;
@@ -39,10 +41,11 @@ public class Property extends AuditableAbstractAggregateRoot<Property> {
     @Column(name = "type")
     private PropertyType type;
 
+    @Column(length = 10)
+    private String currency;
 
-
-    @Column(precision = 15, scale = 2)
-    private Long size;
+    @Column(length = 10)
+    private String size;
 
     private Integer bedrooms;
 
@@ -61,13 +64,17 @@ public class Property extends AuditableAbstractAggregateRoot<Property> {
 
     public Property() {
     }
-    public Property(String title, String description, Long price, String location, String status, String type, Long size, Integer bedrooms, Integer bathrooms, Integer garageSpace, Integer yearBuilt) {
+    public Property(String title, String description,String owner, String price, String location,
+                    String status, String type, String currency,String size, Integer bedrooms, Integer bathrooms,
+                    Integer garageSpace, Integer yearBuilt) {
         this.title = title;
         this.description = description;
+        this.owner = owner;
         this.price = price;
         this.location = location;
         this.status = PropertyStatus.valueOf(status);
         this.type = PropertyType.valueOf(type);
+        this.currency = currency;
         this.size = size;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
@@ -77,10 +84,12 @@ public class Property extends AuditableAbstractAggregateRoot<Property> {
     public Property(AddPropertyCommand createPropertyCommand) {
         this.title = createPropertyCommand.title();
         this.description = createPropertyCommand.description();
+        this.owner = createPropertyCommand.owner();
         this.price = createPropertyCommand.price();
         this.location = createPropertyCommand.location();
         this.status = PropertyStatus.valueOf(createPropertyCommand.status());
         this.type = PropertyType.valueOf(createPropertyCommand.type());
+        this.currency = createPropertyCommand.currency();
         this.size = createPropertyCommand.size();
         this.bedrooms = createPropertyCommand.bedrooms();
         this.bathrooms = createPropertyCommand.bathrooms();
@@ -88,11 +97,17 @@ public class Property extends AuditableAbstractAggregateRoot<Property> {
         this.yearBuilt = createPropertyCommand.yearBuilt();
     }
 
-    public Property updateInformation(String title, String description, Long price, String location, Long size, Integer bedrooms, Integer bathrooms, Integer garageSpace, Integer yearBuilt){
+    public Property updateInformation(String title, String description,String owner, String price, String location,
+                                      String status, String type, String currency,String size, Integer bedrooms, Integer bathrooms,
+                                      Integer garageSpace, Integer yearBuilt){
         this.title = title;
         this.description = description;
+        this.owner = owner;
         this.price = price;
         this.location = location;
+        this.status = PropertyStatus.valueOf(status);
+        this.type = PropertyType.valueOf(type);
+        this.currency = currency;
         this.size = size;
         this.bedrooms = bedrooms;
         this.bathrooms = bathrooms;
