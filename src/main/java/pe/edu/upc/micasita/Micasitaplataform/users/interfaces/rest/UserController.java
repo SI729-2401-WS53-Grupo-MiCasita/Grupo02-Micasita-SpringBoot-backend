@@ -20,6 +20,7 @@ import pe.edu.upc.micasita.Micasitaplataform.users.interfaces.rest.transform.Use
 @RestController
 @RequestMapping(value = "api/v1/users", produces = MediaType.APPLICATION_JSON_VALUE)
 @Tag(name = "Users", description = "The Users API")
+@CrossOrigin(origins = "https://micasita-frontend.web.app")
 public class UserController {
 
     private final UserCommandServices userCommandService;
