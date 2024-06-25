@@ -5,13 +5,14 @@ import lombok.Getter;
 import lombok.Setter;
 import pe.edu.upc.micasita.Micasitaplataform.Reservation.domain.model.commands.CreateReservationCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Reservation.domain.model.valueobjects.ReservationStatus;
+import pe.edu.upc.micasita.Micasitaplataform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 
 import java.time.LocalDateTime;
 
 @Setter
 @Getter
 @Entity
-public class Reservation {
+public class Reservation extends AuditableAbstractAggregateRoot<Reservation>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
