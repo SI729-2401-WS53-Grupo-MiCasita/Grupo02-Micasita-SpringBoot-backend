@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.commands.*;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.queries.GetPropertyImageByIdQuery;
+import pe.edu.upc.micasita.Micasitaplataform.Property.domain.model.queries.GetPropertyImageByPropertyIdQuery;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.services.PropertyImageCommandService;
 import pe.edu.upc.micasita.Micasitaplataform.Property.domain.services.PropertyImageQueryService;
 import pe.edu.upc.micasita.Micasitaplataform.Property.interfaces.rest.resources.CreatePropertyImageResource;
@@ -27,6 +28,29 @@ public class PropertyImageController {
         this.propertyImageCommandService = propertyImageCommandService;
         this.propertyImageQueryService = propertyImageQueryService;
 
+    }
+    @GetMapping("/property/{propertyId}")
+    public ResponseEntity<PropertyImageResource> getPropertyImageByPropertyId(@PathVariable Long propertyId) {
+        var getPropertyImageByPropertyIdQuery = new GetPropertyImageByPropertyIdQuery(propertyId);
+        var propertyImage = propertyImageQueryService.handle(getPropertyImageByPropertyIdQuery);
+
+        if (propertyImage.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        var propertyImageResource = PropertyImageResourceFromEntityAssembler.toResourceFromEntity(propertyImage.get());
+        return ResponseEntity.ok(propertyImageResource);
+    }
+    // Get PropertyImage
+    @GetMapping("/{propertyImageId}")
+    public ResponseEntity<PropertyImageResource> getPropertyImage(@PathVariable Long propertyImageId) {
+        var getPropertyImageByIdQuery = new GetPropertyImageByIdQuery(propertyImageId);
+        var propertyImage = propertyImageQueryService.handle(getPropertyImageByIdQuery);
+
+        if (propertyImage.isEmpty()) {
+            return ResponseEntity.notFound().build();
+        }
+        var propertyImageResource = PropertyImageResourceFromEntityAssembler.toResourceFromEntity(propertyImage.get());
+        return ResponseEntity.ok(propertyImageResource);
     }
 
     //Add PropertyImage

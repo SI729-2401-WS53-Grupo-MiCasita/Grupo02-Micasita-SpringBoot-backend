@@ -21,9 +21,6 @@ public class PropertyCommandServiceImpl implements PropertyCommandService {
     @Override
     public Long handle(AddPropertyCommand command) {
         var property = new Property(command);
-        if (propertyRepository.existsByLocation(property.getLocation())) {
-            throw new IllegalArgumentException("Property with same location already exists");
-        }
         try {
             propertyRepository.save(property);
         } catch (Exception e) {
@@ -47,8 +44,12 @@ public class PropertyCommandServiceImpl implements PropertyCommandService {
             var updatedProperty = propertyRepository.save(propertyToUpdate.updateInformation(
                     command.title(),
                     command.description(),
+                    command.owner(),
                     command.price(),
                     command.location(),
+                    command.status(),
+                    command.type(),
+                    command.currency(),
                     command.size(),
                     command.bedrooms(),
                     command.bathrooms(),

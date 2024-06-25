@@ -18,13 +18,11 @@ public interface PropertyRepository extends JpaRepository<Property, Long> {
     void deleteById(@NonNull Long id);
     Optional<Property> findByBedrooms(@NonNull Integer bedrooms);
 
-    List<Property> findByPriceBetween(@NonNull Long Long1, @NonNull Long Long2);
 
     Optional<Property> findByStatus(Property status);
 
     Optional<Property> findByType(Property type);
 
-    List<Property> findBySizeBetween(@NonNull Long Long1, @NonNull Long Long2);
 
     Optional<Property> findByBathrooms(@NonNull Integer bathrooms);
 

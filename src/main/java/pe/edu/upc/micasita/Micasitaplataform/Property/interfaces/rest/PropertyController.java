@@ -55,8 +55,7 @@ public class PropertyController {
     //Add Property
     @PostMapping
     public ResponseEntity<PropertyResource> addProperty(@RequestBody CreatePropertyResource resource) {
-        AddPropertyCommand addPropertyCommand =
-                CreatePropertyCommandFromResourceAssembler.toCommandFromResource(resource);
+        AddPropertyCommand addPropertyCommand = CreatePropertyCommandFromResourceAssembler.toCommandFromResource(resource);
         Long propertyId = propertyCommandService.handle(addPropertyCommand);
 
         if (propertyId == 0) {

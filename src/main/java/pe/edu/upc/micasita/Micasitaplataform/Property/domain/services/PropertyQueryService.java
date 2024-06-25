@@ -9,10 +9,8 @@ import java.util.Optional;
 
 public interface PropertyQueryService {
     Optional<Property> handle(GetPropertyByLocationQuery query);
-    List<Property> handle(GetPropertyByPriceRangeQuery query);
     Optional<Property> handle(GetPropertyByStatusQuery query);
     Optional<Property> handle(GetPropertyByTypeQuery query);
-    List<Property> handle(GetPropertyBySizeRangeQuery query);
     Optional<Property> handle(GetPropertyByBedroomsQuery query);
     Optional<Property> handle(GetPropertyByBathroomsQuery query);
     Optional<Property> handle(GetPropertyByGarageSpaceQuery query);
