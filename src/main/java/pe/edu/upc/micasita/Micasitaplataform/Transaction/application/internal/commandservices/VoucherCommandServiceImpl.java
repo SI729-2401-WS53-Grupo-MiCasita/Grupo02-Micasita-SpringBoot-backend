@@ -45,6 +45,6 @@ public class VoucherCommandServiceImpl implements VoucherCommandService {
             throw new IllegalArgumentException("Error while saving voucher: " + e.getMessage());
         }
 
-        return voucher.getIdVoucher();
+        return voucher.getId();
     }
 }

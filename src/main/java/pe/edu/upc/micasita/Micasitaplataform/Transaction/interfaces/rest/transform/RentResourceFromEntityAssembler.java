@@ -5,7 +5,7 @@ import pe.edu.upc.micasita.Micasitaplataform.Transaction.interfaces.rest.resourc
 
 public class RentResourceFromEntityAssembler {
     public static RentResource toResourceFromEntity(Rent entity) {
-        return new RentResource(entity.getIdRent(), entity.getUserInfo().name(), entity.getUserInfo().dni(),
+        return new RentResource(entity.getId(), entity.getUserInfo().name(), entity.getUserInfo().dni(),
                 entity.getUserInfo().phoneNumber(), entity.getUserInfo().email(), entity.getRentAmount(), entity.getIdProperty()
         );
     }

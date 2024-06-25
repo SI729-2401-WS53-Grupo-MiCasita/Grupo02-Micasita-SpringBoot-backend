@@ -33,7 +33,7 @@ public class RentCommandServiceImpl implements RentCommandService {
             throw new IllegalArgumentException("Error while saving rent: " + e.getMessage());
         }
 
-        return rent.getIdRent();
+        return rent.getId();
     }
     @Override
     public boolean handle(UpdateRentCommand command) {

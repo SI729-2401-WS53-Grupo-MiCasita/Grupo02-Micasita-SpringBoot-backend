@@ -7,7 +7,7 @@ import pe.edu.upc.micasita.Micasitaplataform.Transaction.interfaces.rest.resourc
 
 public class VoucherResourceFromEntityAssembler {
     public static VoucherResource toResourceFromEntity(Voucher entity) {
-        return new VoucherResource(entity.getIdVoucher(), entity.getIdBuy(), entity.getBuyAmount(),
+        return new VoucherResource(entity.getId(), entity.getIdBuy(), entity.getBuyAmount(),
                 entity.getIdRent(), entity.getRentAmount());
     }
 }

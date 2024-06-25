@@ -7,6 +7,7 @@ import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.commands.C
 import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.commands.UpdateBuyCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.commands.UpdateRentCommand;
 import pe.edu.upc.micasita.Micasitaplataform.Transaction.domain.model.valueobjects.UserInfo;
+import pe.edu.upc.micasita.Micasitaplataform.shared.domain.model.aggregates.AuditableAbstractAggregateRoot;
 
 import java.time.LocalDateTime;
 
@@ -14,10 +15,10 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @Table(name = "buys")
-public class Buy {
-    @Id
+public class Buy extends AuditableAbstractAggregateRoot {
+    /*@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idBuy;
+    private Long idBuy;//*/
 
     @Embedded
     private UserInfo userInfo;
@@ -30,22 +31,7 @@ public class Buy {
     @ManyToOne
     @JoinColumn(name = "id_voucher")
     private Voucher voucher;
-    @Column(name = "created_at", nullable = false, updatable = false)
-    private LocalDateTime createdAt;
 
-    @Column(name = "updated_at")
-    private LocalDateTime updatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        createdAt = LocalDateTime.now();
-        updatedAt = LocalDateTime.now();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updatedAt = LocalDateTime.now();
-    }
 
     public Buy() {}
 
